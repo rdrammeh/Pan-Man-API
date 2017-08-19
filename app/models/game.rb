@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   belongs_to :user
+  has_many :moves
 
   validates :score, :end_time, :start_time, :user, presence: true
 
