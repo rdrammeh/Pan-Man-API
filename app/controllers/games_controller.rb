@@ -9,8 +9,6 @@ class GamesController < ApplicationController
     @game = Game.find_by(id: params[:id], user: current_user.id)
     if @game
       @game.destroy
-    # else
-    #   status: 422
     end
   end
 

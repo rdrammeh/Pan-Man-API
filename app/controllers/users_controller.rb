@@ -9,20 +9,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-    # else
-    #   render json: {status: 503, error: "B"}
+      render json: {id: @user.id}
     end
-    render json: {id: @user.id}
   end
 
   def show
-    @user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:user][:password])
+    @user = User.find_by(id: params[:id])
+    if @user
       session[:user_id] = @user.id
-    # else
-    #   status: 503
+      render json: @user
     end
-    render json: @user
   end
 
   def destroy
