@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get "/users/:id", to: "users#show"
   get "/scores/:id", to: "scores#show"
   get "/scores", to: "scores#all"
-  get "/quit", to: "gamesdestroy"
+  get "/quit", to: "games#destroy"
 
 end
