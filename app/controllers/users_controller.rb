@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       render json: {id: @user.id}
     else
-      render :status => 503
+      status: 503
     end
   end
 
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       render json: @user
     else
-      render :status => 503
+      status: 503
     end
   end
 

@@ -10,7 +10,7 @@ class GamesController < ApplicationController
     if @game
       @game.destroy
     else
-      render :status => 422
+      status: 422
     end
   end
 
