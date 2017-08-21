@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       render json: @user
     else
-      render json: {errors: @user.errors.full_messages}
+
+      render json: {status: 400, errors: ["User does not exist", "Please make an account"]}, status: 400
     end
   end
 
