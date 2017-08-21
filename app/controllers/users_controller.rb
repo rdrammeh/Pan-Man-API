@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       render json: {id: @user.id}
+    else
+      render json: {errors: @user.errors.full_messages}
     end
   end
 
@@ -18,6 +20,8 @@ class UsersController < ApplicationController
     if @user
       session[:user_id] = @user.id
       render json: @user
+    else
+      render json: {errors: ["User does not exist"]}
     end
   end
 
