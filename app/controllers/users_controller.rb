@@ -17,6 +17,7 @@ class UsersController < ApplicationController
         { score: game.score,
           duration: game.duration,
           created_at: game.created_at.strftime("%m/%d/%Y"),
+          username: @user.username,
           highscore_score: @highscore[0].score,
           highscore_date: @highscore[0].created_at.strftime("%m/%d/%Y") }
       end
