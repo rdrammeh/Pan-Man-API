@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get "/quit", to: "games#destroy"
   get "/users/new", to: "user#create"
 
-  post "/users", to: "users#session"
+  post "/users", to: "sessions#create"
 end
