@@ -5,6 +5,13 @@ class UsersController < ApplicationController
     render json: @users = User.all
   end
 
+  def session
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
