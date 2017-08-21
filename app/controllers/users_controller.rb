@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_params, only: [:create]
 
-  def index
-    render json: @users = User.all
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -16,8 +12,17 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     if @user
-      session[:user_id] = @user.id
-      render json: @user
+      @highscore = @user.games.order(score: :desc).limit(1)
+      @user_games = @user.games.map do |game|
+        { score: game.score,
+          duration: game.duration,
+          created_at: game.created_at.strftime("%m/%d/%Y"),
+          highscore_score: @highscore[0].score,
+          highscore_date: @highscore[0].created_at.strftime("%m/%d/%Y") }
+      end
+      render json: @user_games
+    else
+      render 404
     end
   end
 

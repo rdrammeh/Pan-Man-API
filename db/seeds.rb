@@ -22,7 +22,7 @@ User.create(password: "test123", email: "user4@mail.com", username: "user4")
 games << Game.create(score: 0, start_time: Time.now, end_time: Time.now+5, user:  User.last)
 User.create(password: "test123", email: "user5@mail.com", username: "user5")
 games << Game.create(score: 10, start_time: Time.now, end_time: Time.now+44, user:  User.last)
-User.create(password: "test123", email: "user6@mail.com", username: "user6")
+User.create(password: "test123", email: "user6@mail.com", username: "user6")c
 games << Game.create(score: 36, start_time: Time.now, end_time: Time.now+300, user:  solid)
 games << Game.create(score: 34, start_time: Time.now, end_time: Time.now+60, user:  solid)
 games << Game.create(score: 50, start_time: Time.now, end_time: Time.now+200, user:  solid)
