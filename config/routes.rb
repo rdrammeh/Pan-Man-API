@@ -4,13 +4,11 @@ Rails.application.routes.draw do
 
   root "scores#all"
 
-  get "/users/new", to: "user#create"
+  post "/users", to: "users#create"
   get "/users/:id", to: "users#show"
   get "/scores/:id", to: "scores#show"
   get "/scores", to: "scores#all"
   get "/quit", to: "games#destroy"
-  get "/users/new", to: "user#create"
-
   post "/sessions", to: "sessions#create"
   post "/users", to: "users#create"
 end
