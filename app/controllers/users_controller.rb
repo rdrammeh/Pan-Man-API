@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       render json: {id: @user.id}
+    else
+      render json: {errors: @user.errors.full_messages}
     end
   end
 
@@ -20,21 +22,17 @@ class UsersController < ApplicationController
           username: @user.username,
           highscore_score: @highscore[0].score,
           highscore_date: @highscore[0].created_at.strftime("%m/%d/%Y") }
-      end
+        end
       render json: @user_games
     else
-      render 404
+      render json: {errors: ["User does not exist"]}
     end
-  end
-
-  def destroy
-    session.clear
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:register).permit(:username, :email, :password)
   end
 
 end
