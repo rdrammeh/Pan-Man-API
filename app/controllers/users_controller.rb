@@ -14,15 +14,20 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     if @user
-      @highscore = @user.games.order(score: :desc).limit(1)
-      @user_games = @user.games.map do |game|
-        { score: game.score,
-          duration: game.duration,
-          created_at: game.created_at.strftime("%m/%d/%Y"),
-          username: @user.username,
-          highscore_score: @highscore[0].score,
-          highscore_date: @highscore[0].created_at.strftime("%m/%d/%Y") }
+      if @user.games.empty?
+        @user_games = []
+      else
+        @highscore = @user.games.order(score: :desc).limit(1)
+        @user_games = @user.games.map do |game|
+          { score: game.score,
+            duration: game.duration,
+            created_at: game.created_at.strftime("%m/%d/%Y"),
+            highscore_score: @highscore[0].score,
+            highscore_date: @highscore[0].created_at.strftime("%m/%d/%Y")
+          }
         end
+      end
+      @user_games << { username: @user.username }
       render json: @user_games
     else
       render json: {errors: ["User does not exist"]}
