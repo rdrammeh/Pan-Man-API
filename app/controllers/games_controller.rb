@@ -11,9 +11,13 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find_by(id: params[:game][:id], user: params[:game][:user])
+    @user = User.find_by(id: params[:game][:user])
+    @game = Game.find_by(id: params[:game][:id], user: @user)
     if @game
       @game.destroy
+      render json: {status: 200}, status: 200
+    else
+      render json: {status: 400, errors: ["Game can't be destroyed", "Please reach out to a team member"]}, status: 400
     end
   end
 
