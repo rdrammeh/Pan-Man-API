@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   post "/sessions", to: "sessions#create"
   post "/users", to: "users#create"
-  post "/games/:id", to: "games#create"
+  post "/games", to: "games#create"
 
   put "/games/:id", to: "games#update"
 

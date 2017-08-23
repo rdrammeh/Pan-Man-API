@@ -1,9 +1,13 @@
 class GamesController < ApplicationController
-  before_action :game_params, only: [:create]
 
   def create
-    @game = Game.new(game_params)
-    render json: {id: @game.id}
+    @user = User.find_by(id: params[:game][:user])
+    @game = Game.new(user: @user, score: params[:game][:score], start_time: params[:game][:start_time], end_time: params[:game][:end_time])
+    if @game.save
+      render json: {id: @game.id}
+    else
+      render json: {status: 400, errors: ["Could not create a new game, Please reach out to our team"]}, status: 400
+    end
   end
 
   def destroy
@@ -21,12 +25,6 @@ class GamesController < ApplicationController
     else
       render json: {status: 400, errors: ["Game could not be updated", "Please reach out to our team"]}, status: 400
     end
-  end
-
-  private
-
-  def game_params
-    params.require(:game).permit(:user_id, :score, :start_time, :end_time)
   end
 
 end
