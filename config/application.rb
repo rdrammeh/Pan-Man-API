@@ -14,6 +14,7 @@ require "action_cable/engine"
 require "faker"
 require "bcrypt"
 require "rack/cors"
+require 'pry'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
