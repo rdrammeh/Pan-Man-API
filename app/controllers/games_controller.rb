@@ -22,7 +22,8 @@ class GamesController < ApplicationController
   end
 
   def update
-    @game = Game.find_by(id: params[:game][:id], user: params[:game][:user])
+    @user = User.find_by(id: params[:game][:user])
+    @game = Game.find_by(id: params[:id], user: @user)
     if @game
       @game.update(score: params[:game][:score], end_time: params[:game][:end_time])
       render json: @game
