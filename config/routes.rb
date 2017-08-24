@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
   put "/games/:id", to: "games#update"
 
-  delete "/game/:id", to: "games#destroy"
+  delete "/games/:id", to: "games#destroy"
 
 end
