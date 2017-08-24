@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def create
     @user = User.find_by(id: params[:game][:user])
-    @game = Game.new(user: @user, score: params[:game][:score], start_time: DateTime.now.utc end_time: DateTime.now.utc)
+    @game = Game.new(user: @user, score: params[:game][:score], start_time: DateTime.now.utc, end_time: DateTime.now.utc)
     if @game.save
       render json: {id: @game.id}
     else
