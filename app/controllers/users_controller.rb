@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         @user_games = []
       else
         @highscore = @user.games.order(score: :desc).limit(1)
-        @user_games = @user.games.limit(3).map do |game|
+        @user_games = @user.games.order(updated_at: :desc).limit(3).map do |game|
           { score: game.score,
             duration: game.duration,
             created_at: game.created_at.strftime("%m/%d/%Y"),
